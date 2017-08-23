@@ -68,10 +68,10 @@ extension Unicode {
                    (0...255).contains(patchLevel) &&
                    (0...255).contains(buildLevel),
                    "Version components must be in the range 0...255.")
-      self.cValue.0 = UInt8(extendingOrTruncating: major)
-      self.cValue.1 = UInt8(extendingOrTruncating: minor)
-      self.cValue.2 = UInt8(extendingOrTruncating: patchLevel)
-      self.cValue.3 = UInt8(extendingOrTruncating: buildLevel)
+      self.cValue.0 = UInt8(truncatingIfNeeded: major)
+      self.cValue.1 = UInt8(truncatingIfNeeded: minor)
+      self.cValue.2 = UInt8(truncatingIfNeeded: patchLevel)
+      self.cValue.3 = UInt8(truncatingIfNeeded: buildLevel)
     }
 
     /// Creates a new Unicode version value equivalent to the given C value.
@@ -147,7 +147,7 @@ extension Unicode {
 }
 
 extension Unicode.Version: Comparable {
-  
+
   /// Returns a value indicating whether the first version is less than the
   /// second version.
   ///
@@ -186,10 +186,10 @@ extension Unicode.Version: LosslessStringConvertible {
     withUnsafeUInt8Pointer { versionPointer in
       u_versionToString(versionPointer, stringPointer)
     }
-    
+
     return String(cString: stringPointer)
   }
-  
+
   /// Creates a new `UnicodeVersion` by parsing the given string.
   ///
   /// Since the underlying ICU API does not provide error reporting, this

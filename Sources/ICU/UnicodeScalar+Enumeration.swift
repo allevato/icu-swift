@@ -123,8 +123,8 @@ extension Unicode.Scalar {
       CInterop.withPointer(wrapping: block) { blockPointer in
         var error = UErrorCode()
         u_enumCharNames(
-          Int32(extendingOrTruncating: start),
-          Int32(extendingOrTruncating: end),
+          Int32(truncatingIfNeeded: start),
+          Int32(truncatingIfNeeded: end),
           enumerateScalarsCCallback,
           blockPointer,
           nameKind.cValue,
