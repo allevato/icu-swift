@@ -26,7 +26,7 @@ public extension UnicodeScalar {
   ///   numeric scalar.
   public func digitValue(withRadix radix: Int = 10) -> Int? {
     precondition((2...36).contains(radix), "Radix must be between 2 and 36")
-    let result = u_digit(uchar32Value, Int8(extendingOrTruncating: radix))
+    let result = u_digit(uchar32Value, Int8(truncatingIfNeeded: radix))
     return result != -1 ? Int(result) : nil
   }
 }

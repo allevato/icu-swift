@@ -797,7 +797,7 @@ extension Unicode {
       let length = uscript_getSampleString(
         cValue,
         buffer,
-        Int32(extendingOrTruncating: sampleStringBufferLength),
+        Int32(truncatingIfNeeded: sampleStringBufferLength),
         &error)
       guard error.isSuccess else {
         // FIXME: Do something that makes sense here.
@@ -1074,7 +1074,7 @@ extension UnicodeScalar {
     let length = uscript_getScriptExtensions(
       uchar32Value,
       buffer,
-      Int32(extendingOrTruncating: scriptExtensionsBufferLength),
+      Int32(truncatingIfNeeded: scriptExtensionsBufferLength),
       &error)
     guard error.isSuccess else {
       fatalError("uscript_getScriptExtensions failed with error code \(error)")
