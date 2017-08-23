@@ -82,7 +82,7 @@ public extension UnicodeScalar {
       uchar32Value,
       kind.cValue,
       buffer,
-      Int32(extendingOrTruncating: charNameBufferLength),
+      Int32(truncatingIfNeeded: charNameBufferLength),
       &error)
     guard error.isSuccess else {
       // FIXME: Do something that makes sense here.
