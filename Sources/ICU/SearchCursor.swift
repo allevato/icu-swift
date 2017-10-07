@@ -34,6 +34,10 @@ public final class SearchCursor {
     didSet {
       textPointer.deallocate()
       textPointer = text.unsafeUTF16CodeUnits()
+
+      var error = UErrorCode()
+      usearch_setText(
+        cSearch, textPointer.baseAddress!, Int32(textPointer.count), &error)
     }
   }
 
@@ -46,6 +50,13 @@ public final class SearchCursor {
     didSet {
       patternPointer.deallocate()
       patternPointer = pattern.unsafeUTF16CodeUnits()
+
+      var error = UErrorCode()
+      usearch_setPattern(
+        cSearch,
+        patternPointer.baseAddress!,
+        Int32(patternPointer.count),
+        &error)
     }
   }
 
