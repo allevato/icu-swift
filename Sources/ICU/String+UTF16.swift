@@ -16,6 +16,38 @@ import ICU4C
 
 extension String {
 
+  /// Creates a new `String` from the given pointer to a buffer containing
+  /// null-terminated UTF-16 code units.
+  ///
+  /// - Parameter pointer: A pointer to a buffer containing null-terminated
+  ///   UTF-16 code units.
+  internal init(unsafeUTF16CodeUnits pointer: UnsafePointer<UChar>) {
+    var codec = UTF16()
+    var result = ""
+
+    var iteratingPointer = pointer
+    var iterator = AnyIterator<UChar> {
+      let uchar = iteratingPointer.pointee
+      if uchar == 0 {
+        return nil
+      }
+      iteratingPointer = iteratingPointer.advanced(by: 1)
+      return uchar
+    }
+
+    decode: while true {
+      switch codec.decode(&iterator) {
+      case .scalarValue(let scalar): result.unicodeScalars.append(scalar)
+      case .emptyInput: break decode
+      case .error:
+        print("Decoding error")
+        break decode
+      }
+    }
+
+    self = result
+  }
+
   /// Returns a buffer pointer to a copy of the UTF-16 code units of the
   /// receiver.
   ///
