@@ -18,6 +18,8 @@ application** instead of relying on the system version.
 
 ## Changelog
 
+* **0.1.2 (2017.10.07):** Fix `text` and `pattern` setters in `SearchCursor`.
+
 * **0.1.1 (2017.10.07):** Add `SearchCursor`, which wraps ICU's search iterator.
 
 * **0.1.0 (2017.06.23):** Initial release. Adds a number of custom types to the
