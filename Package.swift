@@ -20,6 +20,6 @@ let package = Package(
     Target(name: "ICU"),
   ],
   dependencies: [
-    .Package(url: "https://github.com/allevato/icu4c-swift", majorVersion: 1, minor: 0),
+    .Package(url: "https://github.com/allevato/icu4c-swift", "1.0.1"),
   ]
 )
