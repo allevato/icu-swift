@@ -18,6 +18,9 @@ application** instead of relying on the system version.
 
 ## Changelog
 
+* **0.1.3 (2017.10.30):** Fixes the missing `usearch.h` dependency by updating
+  to the correct version of `icu4c`, which wasn't caught when working in Xcode.
+
 * **0.1.2 (2017.10.07):** Fix `text` and `pattern` setters in `SearchCursor`.
 
 * **0.1.1 (2017.10.07):** Add `SearchCursor`, which wraps ICU's search iterator.
