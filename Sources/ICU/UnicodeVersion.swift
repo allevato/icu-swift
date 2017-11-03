@@ -136,8 +136,8 @@ extension Unicode {
 
       let result = withUnsafeBytes(of: &lhsValue) { lhsBuffer in
         return withUnsafeBytes(of: &rhsValue) { rhsBuffer in
-          return memcmp(lhsBuffer.baseAddress,
-                        rhsBuffer.baseAddress,
+          return memcmp(lhsBuffer.baseAddress!,
+                        rhsBuffer.baseAddress!,
                         MemoryLayout<UVersionInfo>.size)
         }
       }
