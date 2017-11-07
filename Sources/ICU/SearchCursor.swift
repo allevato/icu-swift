@@ -87,11 +87,14 @@ public final class SearchCursor {
   }
 
   /// The substring representing the cursor's current match.
-  public var matchedText: Substring {
+  public var matchedText: Substring? {
     let utf16Start = usearch_getMatchedStart(cSearch)
-    let start = stringIndex(forUTF16Offset: utf16Start)
     let utf16Length = usearch_getMatchedLength(cSearch)
-    let end = stringIndex(forUTF16Offset: utf16Start + utf16Length)
+    guard let start = stringIndex(forUTF16Offset: utf16Start),
+          let end = stringIndex(forUTF16Offset: utf16Start + utf16Length) else {
+      preconditionFailure(
+        "ICU unexpectedly returned an index that was not UTF-16 aligned")
+    }
     return text[start..<end]
   }
 
@@ -112,9 +115,9 @@ public final class SearchCursor {
     var error = UErrorCode()
     self.cSearch = usearch_open(
       self.patternPointer.baseAddress!,
-      Int32(truncatingBitPattern: self.patternPointer.count),
+      Int32(truncatingIfNeeded: self.patternPointer.count),
       self.textPointer.baseAddress!,
-      Int32(truncatingBitPattern: self.textPointer.count),
+      Int32(truncatingIfNeeded: self.textPointer.count),
       locale ?? String(cString: uloc_getDefault()),
       nil,
       &error)
@@ -250,9 +253,10 @@ public final class SearchCursor {
   ///   index.
   private func utf16Offset(forStringIndex index: String.Index) -> Int32 {
     let utf16 = text.utf16
-    let offset = utf16.distance(
-      from: utf16.startIndex,
-      to: index.samePosition(in: utf16))
-    return Int32(truncatingBitPattern: offset)
+    guard let utf16Index = index.samePosition(in: utf16) else {
+      preconditionFailure("String index must be UTF-16 aligned")
+    }
+    let offset = utf16.distance(from: utf16.startIndex, to: utf16Index)
+    return Int32(truncatingIfNeeded: offset)
   }
 }

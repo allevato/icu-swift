@@ -1,3 +1,5 @@
+// swift-tools-version:4.0
+
 // Copyright 2017 Tony Allevato.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,10 +18,14 @@ import PackageDescription
 
 let package = Package(
   name: "icu-swift",
-  targets: [
-    Target(name: "ICU"),
+  products: [
+    .library(name: "swiftICU", type: .static, targets: ["ICU"]),
   ],
   dependencies: [
-    .Package(url: "https://github.com/allevato/icu4c-swift", "1.0.1"),
+    .package(url: "https://github.com/allevato/icu4c-swift", from: "1.0.1"),
+  ],
+  targets: [
+    .target(name: "ICU"),
+    .testTarget(name: "ICUTests", dependencies: ["ICU"]),
   ]
 )
