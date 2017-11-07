@@ -1,5 +1,7 @@
 # ICU for Swift
 
+[![Build Status](https://travis-ci.org/allevato/icu-swift.svg?branch=master)](https://travis-ci.org/allevato/icu-swift)
+
 This package implements Swift-style APIs for [ICU (International Components
 for Unicode)](http://site.icu-project.org) for Swift 4.
 
