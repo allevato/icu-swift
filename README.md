@@ -20,6 +20,10 @@ application** instead of relying on the system version.
 
 ## Changelog
 
+* **0.2.0 (2017.11.23):** Adds `CharacterBreakCursor`, `LineBreakCursor`,
+  `RuleBasedBreakCursor`, `SentenceBreakCursor`, and `WordBreakCursor`, which
+  wrap ICU's break iterators.
+
 * **0.1.3 (2017.10.30):** Fixes the missing `usearch.h` dependency by updating
   to the correct version of `icu4c`, which wasn't caught when working in Xcode.
 
@@ -33,5 +37,5 @@ application** instead of relying on the system version.
 
 ## Future work
 
-* Wrap more ICU core features, like break iterators
+* Wrap more ICU core features
 * Easier integration with iOS, tvOS, watchOS (not using Swift Package Manager)
