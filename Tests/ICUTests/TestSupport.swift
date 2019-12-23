@@ -25,7 +25,7 @@ import XCTest
 ///     `index`.
 func assertIndex<C: Collection>(
   _ index: C.Index?,
-  isDistance distance: C.IndexDistance,
+  isDistance distance: Int,
   fromStartOf collection: C,
   file: StaticString = #file,
   line: UInt = #line

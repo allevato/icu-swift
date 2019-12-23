@@ -14,7 +14,7 @@
 
 import ICU4C
 
-public extension UnicodeScalar {
+extension UnicodeScalar {
 
   /// Returns the lowercase equivalent of the receiving scalar, or the scalar
   /// itself if it has no lowercase equivalent.

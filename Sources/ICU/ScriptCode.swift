@@ -792,7 +792,7 @@ extension Unicode {
       var error = UErrorCode()
       var buffer = UnsafeMutablePointer<UChar>.allocate(
         capacity: sampleStringBufferLength)
-      defer { buffer.deallocate(capacity: sampleStringBufferLength) }
+      defer { buffer.deallocate() }
 
       let length = uscript_getSampleString(
         cValue,
@@ -1069,7 +1069,7 @@ extension UnicodeScalar {
     var error = UErrorCode()
     var buffer = UnsafeMutablePointer<UScriptCode>.allocate(
       capacity: scriptExtensionsBufferLength)
-    defer { buffer.deallocate(capacity: scriptExtensionsBufferLength) }
+    defer { buffer.deallocate() }
 
     let length = uscript_getScriptExtensions(
       uchar32Value,
