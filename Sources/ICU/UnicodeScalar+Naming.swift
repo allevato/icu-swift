@@ -42,7 +42,7 @@ extension Unicode {
   }
 }
 
-public extension UnicodeScalar {
+extension UnicodeScalar {
 
   /// Creates a new Unicode scalar with the given name.
   ///
@@ -76,7 +76,7 @@ public extension UnicodeScalar {
     var error = UErrorCode()
     var buffer = UnsafeMutablePointer<Int8>.allocate(
       capacity: charNameBufferLength)
-    defer { buffer.deallocate(capacity: charNameBufferLength) }
+    defer { buffer.deallocate() }
 
     let length = u_charName(
       uchar32Value,

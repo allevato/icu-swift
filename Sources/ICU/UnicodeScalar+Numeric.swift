@@ -14,7 +14,7 @@
 
 import ICU4C
 
-public extension UnicodeScalar {
+extension UnicodeScalar {
 
   /// Returns the decimal digit value of the receiving scalar in the given
   /// radix.

@@ -14,7 +14,7 @@
 
 import ICU4C
 
-public extension UnicodeScalar {
+extension UnicodeScalar {
 
   /// The canonical combining class of the receiving scalar.
   public var canonicalCombiningClass: Int {
